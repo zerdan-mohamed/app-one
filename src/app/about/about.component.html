@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="card">
+    <h5 class="card-header">About user</h5>
+    <div class="card-body">
+      <h5 class="card-title">Information : </h5>
+
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item col-md-4"><strong>Nom : </strong> {{user.nom}}</li>
+          <li class="list-group-item col-md-4"><strong>Nom : </strong> {{user.email}}</li>
+          <li class="list-group-item col-md-4"><strong>Nom : </strong> {{user.tel}}</li>
+        </ul>
+      </div>
+
+      <br>
+
+      <div>
+        <form #f="ngForm" (ngSubmit)="onAddMessage(f.value)">
+          <div class="input-group mb-3 col-md-4">
+            <input required="" name="message" ngModel [(ngModel)]="message.txt" type="text" class="form-control"
+                   placeholder="Ecrivez votre message" aria-label="Ecrivez votre message">
+
+            <div class="input-group-append">
+              <button [disabled]="!f.valid" type="submit" class="btn btn-info">Ajouter
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <h5>Messages : </h5>
+        <ul class="list-group">
+          <li class="list-group-item col-md-4" *ngFor="let m of messages">
+            {{m.txt}}
+            <span class="badge badge-pill badge-secondary float-right">{{m.date|date:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

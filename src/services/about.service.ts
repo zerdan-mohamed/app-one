@@ -5,7 +5,7 @@ export class AboutService {
   user = {
     nom: 'mohamed',
     email: 'med@gmail.com',
-    tel: '123456789'
+    tel: 123456789
   }
 
   messages = [
@@ -14,10 +14,12 @@ export class AboutService {
     {date: new Date(), txt: 'message n3'}
   ];
 
+
   addMessage(m) {
     m.date = new Date();
     this.messages.push(m);
   }
+
 
   getAllMessages() {
     return this.messages;

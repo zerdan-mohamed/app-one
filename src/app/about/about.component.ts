@@ -8,6 +8,8 @@ import {AboutService} from '../../services/about.service';
 })
 export class AboutComponent implements OnInit {
   user: any;
+  /*user = {nom: String, email: String, tel: umber};*/
+
   messages = [];
 
   message = {
@@ -24,9 +26,9 @@ export class AboutComponent implements OnInit {
   }
 
   onAddMessage(m) {
-    /*console.log(c);*/
+    /*console.log(m);*/
     this.aboutService.addMessage(m);
-    /*this.message.txt = '';*/
+    this.message.txt = '';
     this.messages = this.aboutService.getAllMessages();
   }
 }

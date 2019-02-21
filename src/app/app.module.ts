@@ -9,6 +9,7 @@ import {AboutService} from '../services/about.service';
 import {RouterModule, Routes} from '@angular/router';
 import {ContactsComponent} from './contacts/contacts.component';
 import {HomeComponent} from './home/home.component';
+import {GalleryComponent} from './gallery/gallery.component';
 
 const routes: Routes = [
   {path: 'about', component: AboutComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
     AppComponent,
     AboutComponent,
     ContactsComponent,
-    HomeComponent
+    HomeComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="card">
+    <h6 class="card-header">Gallery</h6>
+    <div class="card-body">
+      <form #g="ngForm" (ngSubmit)="onSearch(g.value)">
+        <div class="input-group mb-3 col-md-6">
+          <input required name="motCle" ngModel [(ngModel)]="motCle" type="text" class="form-control"
+                 placeholder="Mot clé" aria-label="Mot clé">
+
+          <div class="input-group-append">
+            <button [disabled]="!g.valid" type="submit" class="btn btn-info">Chercher
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!--<div *ngIf="pagePhotos">-->
+      <div class="row">
+        <div *ngFor="let p of pagePhotos?.hits" class="col-md-3">
+          <div class="card cadre">
+            <h6 class="card-header">{{p.tags}}</h6>
+            <div class="card-body">
+              <img src="{{p.previewURL}}">
+              <!--<img src="{{p.webformatURL}}">-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" (click)="previousPage" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          <li class="page-item clickable" [ngClass]="{'active':currentPage == (i+1)}"
+              *ngFor="let page of pages; let i = index">
+            <a class="page-link" (click)="goToPage(i)">{{i}}</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" (click)="nextPage()" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

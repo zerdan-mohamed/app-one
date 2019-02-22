@@ -10,6 +10,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ContactsComponent} from './contacts/contacts.component';
 import {HomeComponent} from './home/home.component';
 import {GalleryComponent} from './gallery/gallery.component';
+import {GalleryService} from '../services/gallery.service';
 
 const routes: Routes = [
   {path: 'about', component: AboutComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AboutService],
+  providers: [AboutService,
+    GalleryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

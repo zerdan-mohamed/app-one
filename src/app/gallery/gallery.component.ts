@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import {GalleryService} from '../../services/gallery.service';
 
 @Component({
   selector: 'app-gallery',
@@ -23,25 +24,22 @@ export class GalleryComponent implements OnInit {
 
   size: number = 8;
 
-  constructor(private http: Http) {
+  constructor(private galleryService: GalleryService) {
   }
 
   ngOnInit() {
   }
 
   onSearch(dataForm) {
-    /* l'appel http qui charge et convertir le contenu de la response Http en format Json */
-    this.http.get('https://pixabay.com/api/?key=11682271-ce47b1a80fb4f6e1e0ab9e768' +
-      '&q=' + dataForm.motCle + '&per_page=8&page=' + this.currentPage)
-      .map(resp =>
-        resp.json()
-      )
+    /* attender la reponse et convertir le contenu de la response Http en format Json */
+    this.galleryService.search(this.motCle, this.size, this.currentPage)
       .subscribe(data => {
         this.pagePhotos = data;
-        this.totalPages = data.totalHits / this.size;
-        if (data.totalHits % this.size !== 0) ++this.totalPages;
+        this.totalPages = Math.ceil(data.totalHits / this.size);
 
         this.pages = new Array(this.totalPages);
+      }, err => {
+        console.log(err);
       });
   }
 
